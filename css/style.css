@@ -1193,6 +1193,11 @@ footer .credit a {
     font-size: 1.6rem;
   }
 
+  .about .row .content p.about-text-small {
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+
   .hero {
     min-height: 100vh;
   }
