@@ -132,13 +132,13 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  min-width: 0.95rem;
-  height: 0.95rem;
-  padding: 0 0.2rem;
+  min-width: 0.7rem;
+  height: 0.7rem;
+  padding: 0 0.15rem;
   border-radius: 999px;
   background-color: var(--secondary);
   color: #fff;
-  font-size: 0.62rem;
+  font-size: 0.5rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -1074,12 +1074,15 @@ footer .credit a {
     top: 100%;
     right: -100%;
     background-color: #fff;
-    width: 30rem;
+    width: min(28rem, 85vw);
     height: 100vh;
     transition: 0.3s;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
+    align-items: stretch;
+    gap: 0.3rem;
+    padding: 1.6rem 1.2rem;
+    box-shadow: -12px 0 30px rgba(0, 0, 0, 0.35);
+    border-left: 1px solid #e6e0d8;
   }
 
   .navbar .navbar-nav.active {
@@ -1089,17 +1092,24 @@ footer .credit a {
   .navbar .navbar-nav a {
     color: var(--bg);
     display: block;
-    margin: 1.5rem;
-    padding: 0.5rem;
-    font-size: 2rem;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
   }
 
   .navbar .navbar-nav a::after {
-    transform-origin: 0 0;
+    display: none;
   }
 
   .navbar .navbar-nav a:hover::after {
-    transform: scaleX(0.2);
+    transform: none;
+  }
+
+  .navbar .navbar-nav a:hover {
+    background-color: rgba(179, 121, 66, 0.12);
+    color: #111;
   }
 
   .navbar .search-form {
