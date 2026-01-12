@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precet</title>
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap" rel="stylesheet"/>
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- My Style -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Alpine.js -->
+     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+     <!-- App -->
+      <script src = "src/app.js"> </script>
+
+  </head>
+
+  <body>
+    <!-- Navbar start -->
+    <nav class="navbar reveal-onload">
+      <a href="#" class="navbar-logo">Explore Precet.</a>
+
+      <div class="navbar-nav">
+        <a href="#">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#products">Produk</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="navbar-extra" x-data="{}">
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart-button" class="cart-button">
+          <i data-feather="shopping-cart"></i>
+          <span class="cart-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+        </a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+
+      <!-- Search Form start -->
+      <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here..." />
+        <label for="search-box"><i data-feather="search"></i></label>
+      </div>
+      <!-- Search Form end -->
+
+      <!-- Shopping Cart start -->
+      <div class="shopping-cart" x-data="{}">
+        <div class="cart-header">
+          <span class="cart-title">Keranjang</span>
+          <button
+            type="button"
+            class="cart-close"
+            id="close-cart-button"
+            aria-label="Tutup keranjang"
+          >
+            <i data-feather="x"></i>
+          </button>
+        </div>
+        <div class="cart-list">
+          <template x-for="item in $store.cart.items" :key="item.id">
+            <div class="cart-item">
+              <img :src="item.img" :alt="item.name" />
+              <div class="item-detail">
+                <h3 x-text="item.name"></h3>
+            <div class="item-price">
+              <span x-text="'IDR ' + Number(item.price).toLocaleString('id-ID')"></span>
+            </div>
+            <div class="item-actions">
+              <button
+                type="button"
+                class="qty-btn"
+                aria-label="Kurangi jumlah"
+                @click.prevent="$store.cart.remove(item.id)"
+              >
+                -
+              </button>
+              <span class="item-qty-value" x-text="item.quantity"></span>
+              <button
+                type="button"
+                class="qty-btn"
+                aria-label="Tambah jumlah"
+                @click.prevent="$store.cart.add(item)"
+              >
+                +
+              </button>
+            </div>
+          </div>
+              <a
+                href="#"
+                class="remove-item"
+                aria-label="Hapus produk"
+                @click.prevent.stop="$store.cart.remove(item.id)"
+                >&times;</a
+              >
+            </div>
+          </template>
+          <p class="cart-empty" x-show="!$store.cart.items.length">Keranjang masih kosong.</p>
+        </div>
+        <div class="cart-count" x-show="$store.cart.items.length">
+          <span>Total item</span>
+          <span class="cart-count-value" x-text="$store.cart.quantity"></span>
+        </div>
+        <div class="cart-summary" x-show="$store.cart.items.length">
+          <span>Total</span>
+          <span class="cart-total" x-text="'IDR ' + $store.cart.total.toLocaleString('id-ID')"></span>
+        </div>
+      </div>
+      <!-- Shopping Cart end -->
+    </nav>
+    <!-- Navbar end -->
+    <!-- Header START -->
+    <header class="header reveal-onload" id="home">
+      <video autoplay muted loop playsinline class="video-bg">
+        <source src="img/background_vid.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    
+    </header>
+    <!-- Header END -->
+    <!-- Hero Section start -->
+    <section class="hero reveal-onload" id="home">
+      <div class="mask-container">
+        <main class="content">
+          <h1>Welcome to Precet</h1>
+          <hi>EXPLORE PRECET</hi>
+          <hi>CREATIVE WEBSITE</hi>
+        </main>
+      </div>
+    </section>
+    <!-- Hero Section end -->
+
+    <!-- About Section start -->
+    <section id="about" class="about reveal-onload">
+      <h2>Tentang Kami</h2>
+
+      <div class="row">
+        <div class="about-img">
+          <img src="img/precetshoppia.png" alt="Tentang Kami" />
+        </div>
+        <div class="content">
+          <h3>Harmoni Alam Dalam Produk Kami</h3>
+          <p class="about-text-small">
+            Di balik rimbunnya hutan pinus dan sejuknya udara Lereng Kawi, Desa
+            Precet menyimpan sebuah janji. Janji untuk mengolah setiap karunia
+            alam—mulai dari kemurnian susu segar, aroma kopi pilihan, hingga
+            hasil tani lobak yang melimpah—menjadi produk yang penuh manfaat.
+            Bagi kami, setiap produk adalah mahakarya. Ketulusan warga desa
+            mengalir dalam setiap prosesnya; mulai dari tangan peternak yang
+            merawat sapinya dengan kasih, hingga keuletan ibu-ibu desa yang
+            meracik sabun kopi aromatik dan kerupuk lobak yang renyah. Kami
+            tidak hanya mengirimkan barang, kami mengalirkan semangat gotong
+            royong dan keaslian alam Malang langsung ke depan pintu rumah Anda.
+            Karena bagi Desa Precet, kualitas terbaik adalah cara kami mencintai
+            negeri ini
+          </p>
+          <p>
+            Saat Anda memilih produk UMKM Desa Precet, Anda tidak hanya membeli
+            sebuah barang. Anda sedang ikut serta dalam sebuah gerakan. Anda
+            mendukung sekolah anak-anak petani kami, Anda membantu para ibu di
+            desa untuk memiliki penghasilan mandiri, dan Anda menjaga api
+            semangat gotong royong kami tetap menyala. Setiap transaksi adalah
+            napas baru bagi ekonomi desa kami. Kami berkomitmen untuk terus
+            menjaga kualitas, karena bagi kami, kepercayaan Anda adalah
+            kehormatan bagi seluruh warga Desa Precet.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- About Section end -->
+
+    <!-- Menu Section start -->
+    <section id="menu" class="menu reveal-onload">
+      <h2>Menu Kami</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita,
+        repellendus numquam quam tempora voluptatum.
+      </p>
+
+      <div class="row">
+        <div class="menu-card">
+          <img src="img/sabun.jpeg" alt="Menu" class="menu-card-img" />
+          <h3 class="menu-card-title">- Sabun Kopi -</h3>
+          <p class="menu-card-price">IDR 10K</p>
+        </div>
+        <div class="menu-card">
+          <img src="img/susu.jpeg" alt="Menu" class="menu-card-img" />
+          <h3 class="menu-card-title">- Susu Segar -</h3>
+          <p class="menu-card-price">IDR 15K</p>
+        </div>
+        <div class="menu-card">
+          <img src="img/kerupuk.jpeg" alt="Menu" class="menu-card-img" />
+          <h3 class="menu-card-title">- Kerupuk Lobak -</h3>
+          <p class="menu-card-price">IDR 15K</p>
+        </div>
+        <div class="menu-card">
+          <img src="img/mawar.jpeg" alt="Menu" class="menu-card-img" />
+          <h3 class="menu-card-title">- Mawar Tabur -</h3>
+          <p class="menu-card-price">IDR 10K</p>
+        </div>
+     </section>
+    <!-- Menu Section end -->
+
+    <!-- Products Section start -->
+    <section class="products reveal-onload" id="products" x-data="products()">
+      <h2>Produk Unggulan Kami</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo unde eum,
+        ab fuga possimus iste.
+      </p>
+
+      <div class="row">
+        <div class="product-card">
+          <div class="product-icons">
+            <a
+              href="#"
+              class="product-cart-button"
+              @click.prevent="addToCart({ id: 1, name: 'Sabun Kopi', price: 10000, img: 'img/sabun.jpeg' })"
+              ><i data-feather="shopping-cart"></i
+            ></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
+          </div>
+          <div class="product-image">
+            <img src="img/sabun.jpeg" alt="Product 1" />
+          </div>
+          <div class="product-content">
+            <h3>Sabun Kopi</h3>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star"></i>
+            </div>
+            <div class="product-price">IDR 10K <span>IDR 15K</span></div>
+            <div class="komposisi"> Komposisi :</div>
+            <p class="komposisi">Minyak Kelapa (Coconut Oil),
+            Minyak Zaitun (Olive Oil), Air Suling (Distilled Water),
+            Soda Api (Sodium Hydroxide/NaOH),
+            Ampas Kopi (Coffee Grounds) atau Bubuk Kopi Coffee Powder,
+             Essential Oil Kopi (Coffee Essential Oil) atau Fragrance Oil Kopi, Madu.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-icons">
+            <a
+              href="#"
+              class="product-cart-button"
+              @click.prevent="addToCart({ id: 2, name: 'Susu Segar', price: 15000, img: 'img/susu.jpeg' })"
+              ><i data-feather="shopping-cart"></i
+            ></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
+          </div>
+          <div class="product-image">
+            <img src="img/susu.jpeg" alt="Product 2" />
+          </div>
+          <div class="product-content">
+            <h3>Susu Segar</h3>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star"></i>
+            </div>
+            <div class="product-price">IDR 15K <span>IDR 25K</span></div>
+            <div class="komposisi"> Komposisi :</div>
+            <p class="komposisi">Air, Lemak, Laktosa, Kalsium, fosfor, kalium, natrium, zinc.
+               Vitamin: A, D, E, K, dan B kompleks (B1, B2, B12).</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-icons">
+            <a
+              href="#"
+              class="product-cart-button"
+              @click.prevent="addToCart({ id: 3, name: 'Kerupuk Lobak', price: 15000, img: 'img/kerupuk.jpeg' })"
+              ><i data-feather="shopping-cart"></i
+            ></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
+          </div>
+          <div class="product-image">
+            <img src="img/kerupuk.jpeg" alt="Product 3" />
+          </div>
+          <div class="product-content">
+            <h3>Kerupuk Lobak</h3>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star"></i>
+            </div>
+            <div class="product-price">IDR 15K <span>IDR 20K</span></div>
+            <div class="komposisi"> Komposisi :</div>
+            <p class="komposisi">Lobak Putih, Tepung Beras, Tepung Tapioka/Kanji, Bawang Putih,
+               Garam, Merica (Lada) Bubuk, Gula Pasir, Kaldu Bubuk (ayam/jamur), Minyak Goreng.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-icons">
+            <a
+              href="#"
+              class="product-cart-button"
+              @click.prevent="addToCart({ id: 4, name: 'Mawar Tabur', price: 10000, img: 'img/mawar.jpeg' })"
+              ><i data-feather="shopping-cart"></i
+            ></a>
+            <a href="#" class="item-detail-button"
+              ><i data-feather="eye"></i
+            ></a>
+          </div>
+          <div class="product-image">
+            <img src="img/mawar.jpeg" alt="Product 4" />
+          </div>
+          <div class="product-content">
+            <h3>Mawar Tabur</h3>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+            </div>
+            <div class="product-price">IDR 10K <span>IDR 15K</span></div>
+            <div class="komposisi"> Komposisi :</div>
+            <p class="komposisi">Bunga mawar, Bunga Tambahan, Daun dan Rempah Rempah.</p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- Products Section end -->
+
+    <!-- Contact Section start -->
+    <section id="contact" class="contact reveal-onload">
+      <h2>Kontak Kami</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+        provident.
+      </p>
+
+      <div class="row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1975.4678482584302!2d112.5107821308035!3d-8.005568610209293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7885006379c17b%3A0x9fb4d912c38df703!2sBalai%20Dusun%20Precet!5e0!3m2!1sen!2sid!4v1768014197668!5m2!1sen!2sid"
+          width="600" 
+          height="450" 
+          style="border:0;"
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        
+
+        <form action="">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="Nama" />
+          </div>
+          <div class="input-group">
+            <i data-feather="mail"></i>
+            <input type="text" placeholder="Email" />
+          </div>
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="text" placeholder="No Hp" />
+          </div>
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+    <!-- Contact Section end -->
+
+    <!-- Footer start -->
+    <footer class="reveal-onload">
+      <div class="socials">
+        <a href="#"><i data-feather="message-circle"></i></a> 
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
+        <a href="#"><i data-feather="shopping-bag"></i></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by Dusun Precet. | &copy; 2025.</p>
+      
+    </div>
+    </footer>
+    <!-- Footer end -->
+
+    <!-- Modal Box Item Detail start -->
+    <div class="modal" id="item-detail-modal">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img src="img/sabun.jpeg" alt="Sabun Kopi" />
+          <div class="product-content">
+            <h3>Sabun Kopi</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Provident, tenetur cupiditate facilis obcaecati ullam maiores
+              minima quos perspiciatis similique itaque, esse rerum eius
+              repellendus voluptatibus!
+            </p>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star"></i>
+            </div>
+            <div class="product-price">IDR 10K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i> <span>add to cart</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Box Item Detail end -->
+
+    <!-- Feather Icons -->
+    <script>
+      feather.replace();
+    </script>
+
+    <!-- My Javascript -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
