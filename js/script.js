@@ -5,6 +5,13 @@ document.querySelector('#hamburger-menu').onclick = () => {
   navbarNav.classList.toggle('active');
 };
 
+const navLinks = document.querySelectorAll('.navbar-nav a');
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    navbarNav.classList.remove('active');
+  });
+});
+
 // Toggle class active untuk search form
 const searchForm = document.querySelector('.search-form');
 const searchBox = document.querySelector('#search-box');
