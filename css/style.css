@@ -1312,4 +1312,8 @@ footer .credit a {
     min-width: 1.7rem;
     height: 1.7rem;
     font-size: 0.95rem;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    line-height: 1;
   }
